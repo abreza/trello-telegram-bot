@@ -12,8 +12,15 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.2",
     "@cloudflare/workers-types": "^4.20241112.0",
+    "prisma": "^5.22.0",
     "typescript": "^5.5.2",
     "vitest": "2.0.5",
-    "wrangler": "^3.60.3"
+    "wrangler": "^3.86.1"
+  },
+  "dependencies": {
+    "@ai-sdk/groq": "^0.0.3",
+    "@prisma/adapter-d1": "^5.22.0",
+    "@prisma/client": "^5.22.0",
+    "ai": "^3.4.33"
   }
 }
