@@ -1,7 +1,7 @@
-import { Env } from './types/env';
-import { handleRegister } from './handlers/register';
-import { handleWebhook } from './handlers/webhook';
-import { AIService } from './services/ai';
+import { Env } from './types/env.types';
+import { handleRegister } from './handlers/register.handler';
+import { handleWebhook } from './handlers/webhook.handler';
+import { AIService } from './services/ai.service';
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {

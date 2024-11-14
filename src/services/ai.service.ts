@@ -1,6 +1,7 @@
 import { createGroq } from '@ai-sdk/groq';
 import { CoreMessage, generateText } from 'ai';
 import { SYSTEM_PROMPT } from '../config/prompts';
+import { AI_CONFIG } from '../config/constants';
 
 export class AIService {
 	private groq;
@@ -25,22 +26,16 @@ export class AIService {
 
 	async generateResponse(userMessage: string): Promise<string> {
 		const messages: CoreMessage[] = [
-			{
-				role: 'system',
-				content: SYSTEM_PROMPT,
-			},
-			{
-				role: 'user',
-				content: userMessage,
-			},
+			{ role: 'system', content: SYSTEM_PROMPT },
+			{ role: 'user', content: userMessage },
 		];
 
 		try {
 			const { text } = await generateText({
-				model: this.groq('llama-3.1-70b-versatile'),
+				model: this.groq(AI_CONFIG.MODEL),
 				messages,
-				temperature: 0.7,
-				maxTokens: 1000,
+				temperature: AI_CONFIG.TEMPERATURE,
+				maxTokens: AI_CONFIG.MAX_TOKENS,
 			});
 
 			return text;

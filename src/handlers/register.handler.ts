@@ -1,7 +1,7 @@
-import { Env } from '../types/env';
-import { ApiResponse } from '../types/api';
-import { createJsonResponse } from '../utils/response';
-import TelegramBot from 'node-telegram-bot-api';
+import { Env } from '../types/env.types';
+import { ApiResponse } from '../types/api.types';
+import { createJsonResponse } from '../utils/response.utils';
+import { TelegramBot } from '../lib/node-telegram-bot-api';
 
 export async function handleRegister(request: Request, env: Env): Promise<Response> {
 	try {
@@ -10,9 +10,7 @@ export async function handleRegister(request: Request, env: Env): Promise<Respon
 		const bot = new TelegramBot(env.TELEGRAM_BOT_TOKEN, { polling: false });
 
 		await bot.deleteWebHook();
-
 		await bot.setWebHook(webhookUrl);
-
 		const webhookInfo = await bot.getWebHookInfo();
 
 		return createJsonResponse<ApiResponse>({
