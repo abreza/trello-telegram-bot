@@ -1,30 +1,24 @@
 import { Env } from '../types/env';
 import { ApiResponse } from '../types/api';
-import { TelegramService } from '../services/telegram';
 import { createJsonResponse } from '../utils/response';
+import TelegramBot from 'node-telegram-bot-api';
 
 export async function handleRegister(request: Request, env: Env): Promise<Response> {
 	try {
 		const url = new URL(request.url);
 		const webhookUrl = `${url.protocol}//${url.hostname}/webhook`;
-		const telegramService = new TelegramService(env.TELEGRAM_BOT_TOKEN);
+		const bot = new TelegramBot(env.TELEGRAM_BOT_TOKEN, { polling: false });
 
-		// Delete existing webhook
-		await telegramService.deleteWebhook();
+		await bot.deleteWebHook();
 
-		// Set new webhook
-		const result = await telegramService.setWebhook(webhookUrl);
-		if (!result.ok) {
-			throw new Error(result.description || 'Failed to register webhook');
-		}
+		await bot.setWebHook(webhookUrl);
 
-		// Get webhook info
-		const infoResult = await telegramService.getWebhookInfo();
+		const webhookInfo = await bot.getWebHookInfo();
 
 		return createJsonResponse<ApiResponse>({
 			success: true,
 			message: `Webhook registered successfully at ${webhookUrl}`,
-			...infoResult,
+			webhookInfo,
 		});
 	} catch (error) {
 		const errorMessage = error instanceof Error ? error.message : 'Unknown error';

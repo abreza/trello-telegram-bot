@@ -1,26 +1,25 @@
 {
-  "name": "trello-bot",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
-    "test": "vitest",
-    "cf-typegen": "wrangler types"
-  },
-  "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.5.2",
-    "@cloudflare/workers-types": "^4.20241112.0",
-    "prisma": "^5.22.0",
-    "typescript": "^5.5.2",
-    "vitest": "2.0.5",
-    "wrangler": "^3.86.1"
-  },
-  "dependencies": {
-    "@ai-sdk/groq": "^0.0.3",
-    "@prisma/adapter-d1": "^5.22.0",
-    "@prisma/client": "^5.22.0",
-    "ai": "^3.4.33"
-  }
+	"name": "trello-bot",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.5.2",
+		"@cloudflare/workers-types": "^4.20241112.0",
+		"@types/node-telegram-bot-api": "^0.64.7",
+		"typescript": "^5.5.2",
+		"vitest": "2.0.5",
+		"wrangler": "^3.86.1"
+	},
+	"dependencies": {
+		"@ai-sdk/groq": "^0.0.3",
+		"ai": "^3.4.33",
+		"node-telegram-bot-api": "^0.66.0"
+	}
 }

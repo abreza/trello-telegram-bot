@@ -1,7 +1,6 @@
 import { Env } from './types/env';
 import { handleRegister } from './handlers/register';
 import { handleWebhook } from './handlers/webhook';
-import { handleCreateTask, handleGetTasks } from './handlers/tasks';
 import { AIService } from './services/ai';
 
 export default {
@@ -15,12 +14,6 @@ export default {
 					return handleRegister(request, env);
 				case '/webhook':
 					return handleWebhook(request, env);
-				case '/tasks':
-					if (request.method === 'POST') {
-						return handleCreateTask(request, env);
-					} else if (request.method === 'GET') {
-						return handleGetTasks(env);
-					}
 				default:
 					return new Response('Not Found', { status: 404 });
 			}
