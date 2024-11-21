@@ -1,4 +1,8 @@
 import TelegramBot from 'node-telegram-bot-api';
+import { TELEGRAM_CONFIG } from '../config/telegram.config';
+import { menuStates } from '../config/menu-states.config';
+import { CHAT_STATES, MENU_STATES } from '../types/state.types';
+import { StateService } from '../services/state.service';
 
 export async function handleCallbackQuery(bot: TelegramBot, callbackQuery: TelegramBot.CallbackQuery): Promise<void> {
 	const chatId = callbackQuery.message?.chat.id;
@@ -6,67 +10,39 @@ export async function handleCallbackQuery(bot: TelegramBot, callbackQuery: Teleg
 
 	if (!chatId || !messageId || !callbackQuery.data) return;
 
+	const newMenuState = callbackQuery.data as MENU_STATES;
+	const stateService = StateService.getInstance();
+
 	try {
-		switch (callbackQuery.data) {
-			case 'help':
-				await bot.answerCallbackQuery(callbackQuery.id, {
-					text: 'Showing help information',
+		await bot.answerCallbackQuery(callbackQuery.id, {});
+		switch (newMenuState) {
+			case MENU_STATES.SIGNUP:
+				stateService.updateUserState(chatId, {
+					state: CHAT_STATES.SIGNUP_AWAITING_USERNAME,
 				});
-				await bot.editMessageText(
-					'Here are the available commands:\n\n' +
-						'🚀 /start - Start the bot\n' +
-						'❓ /help - Show this help message\n' +
-						'ℹ️ /about - About this bot\n\n' +
-						"You can also just send me a message and I'll respond!",
-					{
-						chat_id: chatId,
-						message_id: messageId,
-						parse_mode: 'HTML',
-						reply_markup: {
-							inline_keyboard: [[{ text: '🔙 Back to Menu', callback_data: 'start' }]],
-						},
-					}
-				);
-				break;
 
-			case 'about':
-				await bot.answerCallbackQuery(callbackQuery.id, {
-					text: 'Showing about information',
-				});
-				await bot.editMessageText('I am an AI assistant powered by Groq. I can help you with various tasks and answer your questions.', {
+				await bot.editMessageText(TELEGRAM_CONFIG.MESSAGES.AWAITING_USERNAME, {
 					chat_id: chatId,
 					message_id: messageId,
-					parse_mode: 'HTML',
-					reply_markup: {
-						inline_keyboard: [[{ text: '🔙 Back to Menu', callback_data: 'start' }]],
-					},
 				});
 				break;
 
-			case 'start':
-				await bot.answerCallbackQuery(callbackQuery.id, {
-					text: 'Returning to main menu',
-				});
-				await bot.editMessageText('Welcome to the main menu! How can I help you today?', {
-					chat_id: chatId,
-					message_id: messageId,
-					reply_markup: {
-						inline_keyboard: [[{ text: '❓ Help', callback_data: 'help' }], [{ text: 'ℹ️ About', callback_data: 'about' }]],
-					},
-				});
-				break;
+			case MENU_STATES.START:
+				stateService.clearUserState(chatId);
 
 			default:
-				await bot.answerCallbackQuery(callbackQuery.id, {
-					text: 'Unknown action',
-					show_alert: true,
+				await bot.editMessageText(menuStates[newMenuState].showingMessage, {
+					chat_id: chatId,
+					message_id: messageId,
+					reply_markup: {
+						inline_keyboard: menuStates[newMenuState].keyboard || [],
+					},
 				});
-				break;
 		}
 	} catch (error) {
 		console.error('Error handling callback query:', error);
 		await bot.answerCallbackQuery(callbackQuery.id, {
-			text: 'An error occurred while processing your request',
+			text: 'ERROR',
 			show_alert: true,
 		});
 	}

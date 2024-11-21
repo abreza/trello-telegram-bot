@@ -12,7 +12,6 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 		const bot = new TelegramBot(env.TELEGRAM_BOT_TOKEN, { polling: false });
 
 		if (update.message?.text) {
-			const chatId = update.message.chat.id;
 			const messageText = update.message.text;
 
 			if (messageText.startsWith('/')) {
@@ -22,8 +21,7 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 
 			const aiService = AIService.getInstance();
 			const aiResponse = await aiService.generateResponse(messageText);
-
-			await bot.sendMessage(chatId, aiResponse);
+			await bot.sendMessage(update.message.chat.id, aiResponse);
 			return new Response('OK');
 		}
 

@@ -1,7 +1,6 @@
 import { createGroq } from '@ai-sdk/groq';
 import { CoreMessage, generateText } from 'ai';
-import { SYSTEM_PROMPT } from '../config/prompts';
-import { AI_CONFIG } from '../config/constants';
+import { AI_CONFIG, SYSTEM_PROMPT } from '../config/ai.config';
 
 export class AIService {
 	private groq;

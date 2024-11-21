@@ -2,14 +2,20 @@ import { Env } from './types/env.types';
 import { handleRegister } from './handlers/register.handler';
 import { handleWebhook } from './handlers/webhook.handler';
 import { AIService } from './services/ai.service';
+import { UserService } from './services/user.service';
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {
 		try {
 			AIService.initialize(env.GROQ_API_KEY);
+			UserService.initialize(env.DB);
+
 			const url = new URL(request.url);
 
 			switch (url.pathname) {
+				case '/create-tables':
+					await UserService.getInstance().createTables();
+					return new Response('Tables created', { status: 200 });
 				case '/register':
 					return handleRegister(request, env);
 				case '/webhook':

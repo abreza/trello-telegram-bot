@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@ai-sdk/groq": "^0.0.3",
 		"ai": "^3.4.33",
+		"bcryptjs": "^2.4.3",
 		"node-telegram-bot-api": "^0.66.0"
 	}
 }
