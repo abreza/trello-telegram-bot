@@ -1,5 +1,5 @@
-import { Env } from '../../core/types/env.types';
-import { ApiResponse } from '../../core/types/api.types';
+import { Env } from '../../../core/types/env.types';
+import { ApiResponse } from '../../../core/types/api.types';
 import { createJsonResponse } from '../../utils/response.utils';
 import { TelegramBot } from '../libs/node-telegram-bot-api';
 

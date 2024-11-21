@@ -1,10 +1,10 @@
-import { Env } from '../../core/types/env.types';
-import { ApiResponse } from '../../core/types/api.types';
+import { Env } from '../../../core/types/env.types';
+import { ApiResponse } from '../../../core/types/api.types';
 import { createJsonResponse } from '../../utils/response.utils';
-import { handleCommand } from '../../states/handlers/command.handler';
-import { handleCallbackQuery } from '../../states/handlers/callback.handler';
+import { handleCommand } from '../../../features/states/handlers/command.handler';
+import { handleCallbackQuery } from '../../../features/states/handlers/callback.handler';
 import { TelegramBot } from '../libs/node-telegram-bot-api';
-import { handleMessage } from '../../states/handlers/message.handler';
+import { handleMessage } from '../../../features/states/handlers/message.handler';
 
 export async function handleWebhook(request: Request, env: Env): Promise<Response> {
 	try {

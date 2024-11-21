@@ -1,6 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { COMMAND_TO_MENU, COMMAND_TO_MESSAGE, TELEGRAM_CONFIG } from '../../configs/telegram.config';
-import { menuStates } from '../config/menu-states.config';
+import { COMMAND_TO_MENU, COMMAND_TO_MESSAGE, TELEGRAM_CONFIG, menuStates } from '../config/states.config';
 import { MENU_STATES } from '../types/state.types';
 
 export async function handleCommand(bot: TelegramBot, message: TelegramBot.Message): Promise<void> {

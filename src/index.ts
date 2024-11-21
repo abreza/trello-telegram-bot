@@ -1,6 +1,6 @@
 import { Env } from './core/types/env.types';
-import { handleRegister } from './telegram/handlers/register.handler';
-import { handleWebhook } from './telegram/handlers/webhook.handler';
+import { handleRegister } from './connection/telegram/handlers/register.handler';
+import { handleWebhook } from './connection/telegram/handlers/webhook.handler';
 import { AIService } from './core/services/ai.service';
 import { UserService } from './core/services/user.service';
 
