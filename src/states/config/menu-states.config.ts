@@ -1,13 +1,13 @@
 import { InlineKeyboardButton } from 'node-telegram-bot-api';
-import { TELEGRAM_CONFIG } from '../../../configs/telegram.config';
+import { TELEGRAM_CONFIG } from '../../configs/telegram.config';
 import { MENU_STATES } from '../types/state.types';
 
-export interface StateConfig {
+export interface StateView {
 	readonly showingMessage: string;
 	keyboard?: InlineKeyboardButton[][];
 }
 
-export const menuStates: Record<MENU_STATES, StateConfig> = {
+export const menuStates: Record<MENU_STATES, StateView> = {
 	[MENU_STATES.START]: {
 		showingMessage: TELEGRAM_CONFIG.MESSAGES.WELCOME,
 		keyboard: [[TELEGRAM_CONFIG.BUTTONS.HELP, TELEGRAM_CONFIG.BUTTONS.ABOUT], [TELEGRAM_CONFIG.BUTTONS.SIGNUP]],

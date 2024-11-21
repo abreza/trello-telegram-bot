@@ -1,8 +1,8 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { UserService } from '../../../core/services/user.service';
-import { StateService } from '../../../core/services/state.service';
-import { TELEGRAM_CONFIG } from '../../../configs/telegram.config';
-import { CHAT_STATES } from '../../state/types/state.types';
+import { UserService } from '../services/user.service';
+import { StateService } from '../../states/state.service';
+import { TELEGRAM_CONFIG } from '../../configs/telegram.config';
+import { CHAT_STATES } from '../../states/types/state.types';
 
 export async function handleSignupMessage(bot: TelegramBot, message: TelegramBot.Message): Promise<void> {
 	const chatId = message.chat.id;

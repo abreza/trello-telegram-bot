@@ -1,8 +1,8 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { TELEGRAM_CONFIG } from '../../../configs/telegram.config';
+import { TELEGRAM_CONFIG } from '../../configs/telegram.config';
 import { menuStates } from '../config/menu-states.config';
 import { CHAT_STATES, MENU_STATES } from '../types/state.types';
-import { StateService } from '../../../core/services/state.service';
+import { StateService } from '../state.service';
 
 export async function handleCallbackQuery(bot: TelegramBot, callbackQuery: TelegramBot.CallbackQuery): Promise<void> {
 	const chatId = callbackQuery.message?.chat.id;

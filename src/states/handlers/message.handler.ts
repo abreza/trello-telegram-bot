@@ -1,8 +1,8 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { AIService } from '../../../core/services/ai.service';
-import { StateService } from '../../../core/services/state.service';
+import { AIService } from '../../core/services/ai.service';
+import { StateService } from '../state.service';
 import { CHAT_STATES } from '../types/state.types';
-import { handleSignupMessage } from '../../auth/handlers/auth.handler';
+import { handleSignupMessage } from '../../core/handlers/auth.handler';
 
 export async function handleMessage(bot: TelegramBot, message: TelegramBot.Message): Promise<void> {
 	const chatId = message.chat.id;
