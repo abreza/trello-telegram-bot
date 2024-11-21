@@ -1,5 +1,5 @@
 import { InlineKeyboardButton } from 'node-telegram-bot-api';
-import { TELEGRAM_CONFIG } from './telegram.config';
+import { TELEGRAM_CONFIG } from '../../../configs/telegram.config';
 import { MENU_STATES } from '../types/state.types';
 
 export interface StateConfig {

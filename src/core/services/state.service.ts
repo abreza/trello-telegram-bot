@@ -1,4 +1,4 @@
-import { CHAT_STATES, UserState } from '../types/state.types';
+import { CHAT_STATES, UserState } from '../../features/state/types/state.types';
 
 export class StateService {
 	private static instance: StateService;

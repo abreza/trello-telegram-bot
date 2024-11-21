@@ -1,8 +1,8 @@
-import { Env } from './types/env.types';
-import { handleRegister } from './handlers/register.handler';
-import { handleWebhook } from './handlers/webhook.handler';
-import { AIService } from './services/ai.service';
-import { UserService } from './services/user.service';
+import { Env } from './core/types/env.types';
+import { handleRegister } from './telegram/handlers/register.handler';
+import { handleWebhook } from './telegram/handlers/webhook.handler';
+import { AIService } from './core/services/ai.service';
+import { UserService } from './core/services/user.service';
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {

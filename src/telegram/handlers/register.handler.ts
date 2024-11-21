@@ -1,7 +1,7 @@
-import { Env } from '../types/env.types';
-import { ApiResponse } from '../types/api.types';
-import { createJsonResponse } from '../utils/response.utils';
-import { TelegramBot } from '../lib/node-telegram-bot-api';
+import { Env } from '../../core/types/env.types';
+import { ApiResponse } from '../../core/types/api.types';
+import { createJsonResponse } from '../../core/utils/response.utils';
+import { TelegramBot } from '../libs/node-telegram-bot-api';
 
 export async function handleRegister(request: Request, env: Env): Promise<Response> {
 	try {

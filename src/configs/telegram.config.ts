@@ -1,4 +1,4 @@
-import { MENU_STATES } from '../types/state.types';
+import { MENU_STATES } from '../features/state/types/state.types';
 
 export const TELEGRAM_CONFIG = {
 	COMMANDS: {
